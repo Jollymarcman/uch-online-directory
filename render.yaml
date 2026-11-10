@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: uch-online-directory
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: UCH_ROOM_LEASE_SECONDS
+        value: "60"
